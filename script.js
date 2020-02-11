@@ -10,10 +10,14 @@ let ticketPrice = parseInt(movieSelect.value)
 const updateSelectedCount = () => {
   const selectedSeats = document.querySelectorAll('.row .seat.selected')
 
+  // of the selected seats, find me its index inside the total seat
+  const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat))
+
+  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex))
+
   const selectedSeatsCount = selectedSeats.length
 
   count.innerText = selectedSeatsCount
-
   total.innerText = selectedSeatsCount * ticketPrice
 }
 
